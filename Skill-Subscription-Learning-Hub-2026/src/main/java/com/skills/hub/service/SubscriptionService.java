@@ -1,12 +1,8 @@
-package com.skills.hub.service;
+package com.skills.hub.repository;
 
-import com.skills.hub.model.Subscription;
+import com.skills.hub.entity.Subscription;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
 
-public interface SubscriptionService {
-
-    Subscription subscribe(Long userId, Long packId);
-
-    List<Subscription> getUserSubscriptions(Long userId);
 }
