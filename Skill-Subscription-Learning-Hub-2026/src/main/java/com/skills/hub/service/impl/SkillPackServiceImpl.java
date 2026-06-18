@@ -1,6 +1,6 @@
 package com.skills.hub.service.impl;
 
-import com.skills.hub.model.SkillPack;
+import com.skills.hub.entity.SkillPack;
 import com.skills.hub.repository.SkillPackRepository;
 import com.skills.hub.service.SkillPackService;
 import org.springframework.stereotype.Service;
@@ -10,50 +10,30 @@ import java.util.List;
 @Service
 public class SkillPackServiceImpl implements SkillPackService {
 
-    private final SkillPackRepository packRepo;
+    private final SkillPackRepository repo;
 
-    public SkillPackServiceImpl(SkillPackRepository packRepo) {
-        this.packRepo = packRepo;
+    public SkillPackServiceImpl(SkillPackRepository repo) {
+        this.repo = repo;
     }
 
     @Override
-    public SkillPack addSkillPack(SkillPack pack) {
-
-        // STEP 1: validate input
-        // STEP 2: save to DB
-        // STEP 3: return saved object
-
-        return null;
+    public List<SkillPack> getAll() {
+        return repo.findAll();
     }
 
     @Override
-    public List<SkillPack> getAllPacks() {
-
-        // STEP 1: fetch all packs from DB
-        // STEP 2: return list
-
-        return null;
+    public SkillPack save(SkillPack skillPack) {
+        return repo.save(skillPack);
     }
 
     @Override
-    public SkillPack updateSkillPack(SkillPack pack) {
-
-        // STEP 1: find existing pack by ID
-        // STEP 2: if not found → return null
-        // STEP 3: update fields
-        // STEP 4: save updated pack
-        // STEP 5: return updated pack
-
-        return null;
+    public void deleteById(Long id) {
+        repo.deleteById(id);
     }
-
-    @Override
-    public void deleteSkillPack(Long id) {
-
-        // STEP 1: delete pack by ID
-    }
-
-	public SkillPackRepository getPackRepo() {
-		return packRepo;
-	}
 }
+
+
+
+
+
+skillpackserviceimpl
