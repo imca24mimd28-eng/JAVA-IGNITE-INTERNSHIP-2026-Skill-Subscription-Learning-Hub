@@ -1,73 +1,42 @@
 package com.skills.hub.controller;
 
-import com.skills.hub.model.User;
+import com.skills.hub.entity.User;
 import com.skills.hub.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-/*
-=========================================================
-WHAT IS THIS FILE?
-Handles user actions like register and login
-=========================================================
-*/
 
 @Controller
 public class UserController {
 
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/register")
-    public String showRegisterPage() {
-
-        // =========================
-        // TASK
-        // =========================
-        // STEP 1: Return register page
-
-        return null; // TODO: "register"
-    }
+    @Autowired
+    private UserService service;
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user) {
-
-        // =========================
-        //TASK
-        // =========================
-        // STEP 1: call service.registerUser(user)
-        // STEP 2: if success → redirect to login
-        // STEP 3: else → stay on register page
-
-        return null;
+    public String register(@ModelAttribute User user) {
+        service.registerUser(user);
+        return "login";
     }
 
     @GetMapping("/login")
-    public String showLoginPage() {
-
-        // STEP 1: return login page
-
-        return null; // TODO: "login"
+    public String loginPage() {
+        return "login";
     }
 
     @PostMapping("/login")
     public String login(@RequestParam String email,
-                         @RequestParam String password) {
+                        @RequestParam String password,
+                        Model model) {
 
-        // =========================
-        // PSEUDO CODE
-        // =========================
-        // STEP 1: call userService.login(email, password)
-        // STEP 2: if user != null → redirect /packs
-        // STEP 3: else → return login page again
+        User user = service.login(email, password);
 
-        return null;
+        if (user != null) {
+            model.addAttribute("name", user.getName());
+            return "welcome";
+        } else {
+            model.addAttribute("error", "Invalid Credentials");
+            return "login";
+        }
     }
-
-	public UserService getUserService() {
-		return userService;
-	}
 }
