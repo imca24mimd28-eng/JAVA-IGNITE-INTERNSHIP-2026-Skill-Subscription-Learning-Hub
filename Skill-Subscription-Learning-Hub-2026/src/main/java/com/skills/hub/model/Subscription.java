@@ -1,23 +1,4 @@
-package com.skills.hub.model;
-
 import jakarta.persistence.*;
-import java.time.LocalDate;
-
-/*
-=========================================================
-WHAT IS THIS CLASS?
-=========================================================
-
-This represents SUBSCRIPTION.
-
-It connects:
-User + SkillPack
-
-Example:
-Hari -> subscribed to Java Course
-
-=========================================================
-*/
 
 @Entity
 @Table(name = "subscriptions")
@@ -27,74 +8,62 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Many subscriptions belong to one user
-    @ManyToOne
-    private User user;
+    private String name;
 
-    // Many subscriptions belong to one skill pack
-    @ManyToOne
-    private SkillPack skillPack;
+    private String type;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Double price;
 
-    private String status; // ACTIVE / CANCELLED
+    private String duration;
 
-    // =========================
-    // GETTERS AND SETTERS
-    // =========================
+    public Subscription() {
+    }
+
+    public Subscription(Long id, String name, String type, Double price, String duration) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.price = price;
+        this.duration = duration;
+    }
 
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
-        //  assign subscription id
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    public void setUser(User user) {
-        // link user
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public SkillPack getSkillPack() {
-        return skillPack;
+    public String getType() {
+        return type;
     }
 
-    public void setSkillPack(SkillPack skillPack) {
-        //  link skill pack
-        this.skillPack = skillPack;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        //  set start date
-        this.startDate = startDate;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        //  set end date
-        this.endDate = endDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        //  set ACTIVE or CANCELLED
-        this.status = status;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }
