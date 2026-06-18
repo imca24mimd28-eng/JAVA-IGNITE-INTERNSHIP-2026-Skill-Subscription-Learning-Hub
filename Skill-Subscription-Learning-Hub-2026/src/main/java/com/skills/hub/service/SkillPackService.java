@@ -1,16 +1,13 @@
 package com.skills.hub.service;
 
-import com.skills.hub.model.SkillPack;
-
+import com.skills.hub.entity.SkillPack;
 import java.util.List;
 
 public interface SkillPackService {
 
-    SkillPack addSkillPack(SkillPack pack);
+    SkillPack save(SkillPack skillPack);
 
-    List<SkillPack> getAllPacks();
+    List<SkillPack> getAll();
 
-    SkillPack updateSkillPack(SkillPack pack);
-
-    void deleteSkillPack(Long id);
+    void deleteById(Long id);
 }
